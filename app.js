@@ -1,16 +1,17 @@
 var Resistor = /** @class */ (function () {
-    function Resistor(r) {
-        this.r = 0;
-        this.r = r;
+    function Resistor(resistance) {
+        this.resistance = resistance;
     }
-    Resistor.prototype.getCurrent = function (u) {
-        return u / this.r;
+    Resistor.prototype.getCurrent = function (voltage) {
+        return voltage / this.resistance;
     };
     return Resistor;
 }());
-var r1 = new Resistor(110);
-console.log(r1.getCurrent(5));
-var r2 = new Resistor(220);
-console.log(r2.getCurrent(5));
-var r3 = new Resistor(4700);
-console.log(r2.getCurrent(5));
+var resistors = [new Resistor(110), new Resistor(220), new Resistor(4700)];
+var totalCurrent = 0;
+var voltage = 5;
+for (var _i = 0, resistors_1 = resistors; _i < resistors_1.length; _i++) {
+    var resistor = resistors_1[_i];
+    totalCurrent += resistor.getCurrent(voltage);
+}
+console.log(totalCurrent);
